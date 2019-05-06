@@ -54,7 +54,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getCapitais());
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -67,7 +67,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getMaiorEMenorEstados());
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -80,20 +80,20 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getQuantidadeUF(uf));
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/cidades/{idibge}")
+    @Path("/{idibge}")
     public String getCidadesPorIBGE(@PathParam("idibge")int idIBGE) {
         DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
         Gson g = new Gson();
         try {
-            return g.toJson(daoCidade.getCidades(idIBGE));
-        } catch (SQLException | ClassNotFoundException ex) {            
+            return g.toJson(daoCidade.getCidade(idIBGE));
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -106,7 +106,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getNomes(uf));
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -133,7 +133,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getQuantidade(coluna));
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -146,7 +146,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getQuantidade());
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -159,7 +159,7 @@ public class CidadeWebService {
         Gson g = new Gson();
         try {
             return g.toJson(daoCidade.getCidadesMaisDistantes());
-        } catch (SQLException | ClassNotFoundException ex) {            
+        } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
         }
     }
@@ -173,18 +173,18 @@ public class CidadeWebService {
         DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
         try {
             return daoCidade.inserir(cidade);
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException | IOException ex) {
             return false;
         }
     }
     
     @DELETE
-    @Path("/{id}")
-    public boolean excluir(@PathParam("id")int id) {
+    @Path("/{idibge}")
+    public boolean excluir(@PathParam("idibge")int idIBGE) {
         DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
         try {
-            return daoCidade.excluir(id);
-        } catch (SQLException | ClassNotFoundException ex) {
+            return daoCidade.excluir(idIBGE);
+        } catch (SQLException | ClassNotFoundException | IOException ex) {
             return false;
         }
     }

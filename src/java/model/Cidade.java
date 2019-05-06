@@ -2,46 +2,36 @@ package model;
 
 public class Cidade {
 
-    private int id;
-    private String nome;
-    private boolean capital;
-    private String uf;
     private int idIBGE;
-    private int posX;
-    private int posY;
+    private String uf;
+    private String name;
+    private boolean capital;
+    private double lon;
+    private double lat;
+    private String noAccents;
+    private String alternativeNames;
+    private String microregion;
+    private String mesoregion;
 
-    public Cidade(int id, String nome, boolean capital, String uf, int idIBGE, int posX, int posY) {
-        this.id = id;
-        this.nome = nome;
-        this.capital = capital;
-        this.uf = uf;
+    public Cidade(int idIBGE, String uf, String name, boolean capital, double lon, double lat, String noAccents, String alternativeNames, String microregion, String mesoregion) {
         this.idIBGE = idIBGE;
-        this.posX = posX;
-        this.posY = posY;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public boolean isCapital() {
-        return capital;
-    }
-
-    public void setCapital(boolean capital) {
+        this.uf = uf;
+        this.name = name;
         this.capital = capital;
+        this.lon = lon;
+        this.lat = lat;
+        this.noAccents = noAccents;
+        this.alternativeNames = alternativeNames;
+        this.microregion = microregion;
+        this.mesoregion = mesoregion;
+    }
+
+    public int getIdIBGE() {
+        return idIBGE;
+    }
+
+    public void setIdIBGE(int idIBGE) {
+        this.idIBGE = idIBGE;
     }
 
     public String getUf() {
@@ -52,28 +42,68 @@ public class Cidade {
         this.uf = uf;
     }
 
-    public int getIdIBGE() {
-        return idIBGE;
+    public String getName() {
+        return name;
     }
 
-    public void setIdIBGE(int idIBGE) {
-        this.idIBGE = idIBGE;
-    }    
-
-    public int getPosX() {
-        return posX;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public boolean isCapital() {
+        return capital;
     }
 
-    public int getPosY() {
-        return posY;
+    public void setCapital(boolean capital) {
+        this.capital = capital;
     }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }   
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public String getNoAccents() {
+        return noAccents;
+    }
+
+    public void setNoAccents(String noAccents) {
+        this.noAccents = noAccents;
+    }
+
+    public String getAlternativeNames() {
+        return alternativeNames;
+    }
+
+    public void setAlternativeNames(String alternativeNames) {
+        this.alternativeNames = alternativeNames;
+    }
+
+    public String getMicroregion() {
+        return microregion;
+    }
+
+    public void setMicroregion(String microregion) {
+        this.microregion = microregion;
+    }
+
+    public String getMesoregion() {
+        return mesoregion;
+    }
+
+    public void setMesoregion(String mesoregion) {
+        this.mesoregion = mesoregion;
+    }
     
 }

@@ -1,0 +1,6 @@
+host=ander-nb
+porta=1521
+usuario=xpto
+senha=xpto
+sid=xe
+caminhocsv=C:\Users\Ander\Google Drive\API_XPTO\xpto\cidades.csv

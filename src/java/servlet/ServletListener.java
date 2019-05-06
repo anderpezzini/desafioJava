@@ -18,7 +18,7 @@ public class ServletListener implements ServletContextListener {
         DAOCSV daoCsv = new DAOCSV();
         try {
             daoCidade.importaDados(daoCsv.getRegistros());
-        } catch (IOException | SQLException | ClassNotFoundException ex) {
+        } catch (IOException | SQLException | ClassNotFoundException ex) {            
         }
     }
     
