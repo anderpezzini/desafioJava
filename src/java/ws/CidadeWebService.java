@@ -22,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -71,19 +72,6 @@ public class CidadeWebService {
             return g.toJson(ex.getMessage());
         }
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/quantidade-uf/{uf}")
-    public String getQuantidadePorUF(@PathParam("uf")String uf) {
-        DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
-        Gson g = new Gson();
-        try {
-            return g.toJson(daoCidade.getQuantidadeUF(uf));
-        } catch (SQLException | ClassNotFoundException | IOException ex) {            
-            return g.toJson(ex.getMessage());
-        }
-    }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -127,24 +115,17 @@ public class CidadeWebService {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/quantidade/{coluna}")
-    public String getQuantidadeRegistros(@PathParam("coluna")String coluna) {
-        DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
-        Gson g = new Gson();
-        try {
-            return g.toJson(daoCidade.getQuantidade(coluna));
-        } catch (SQLException | ClassNotFoundException | IOException ex) {            
-            return g.toJson(ex.getMessage());
-        }
-    }
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("/quantidade")
-    public String getQuantidadeRegistros() {
+    public String getQuantidadeRegistros(@QueryParam("coluna")String coluna, @QueryParam("uf")String uf) {
         DAOCidade daoCidade = DAOFactory.getDAOFactory().getDAOCidade();
         Gson g = new Gson();
         try {
+            if (!coluna.equals("")) {
+                return g.toJson(daoCidade.getQuantidade(coluna));
+            }
+            if (!uf.equals("")) {
+                return g.toJson(daoCidade.getQuantidadeUF(uf)); 
+            }
             return g.toJson(daoCidade.getQuantidade());
         } catch (SQLException | ClassNotFoundException | IOException ex) {            
             return g.toJson(ex.getMessage());
@@ -166,7 +147,6 @@ public class CidadeWebService {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/inserir")
     public boolean inserir(String content) {
         Gson g = new Gson();
         Cidade cidade = g.fromJson(content, Cidade.class);
